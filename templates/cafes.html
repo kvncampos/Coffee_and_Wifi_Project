@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% from 'bootstrap4/table.html' import render_table %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table table-dark table-striped table-hover">
+          <!-- This is where you will write the code to render a Bootstrap 
+          Table that contains all the information from the 
+          cafe-data.csv file. -->
+            <thead>
+                <tr>
+                    <th>Cafe Name</th>
+                    <th>Location</th>
+                    <th>Open Time</th>
+                    <th>Close Time</th>
+                    <th>Coffee Rank</th>
+                    <th>Wifi Strength</th>
+                    <th>Power Outlets</th>
+                <tr>
+            </thead>
+            <tbody>
+            {% for cafe in cafes %}
+                <tr>
+                    <td>{{ cafe.get('Cafe Name') }}</td>
+                    <td>
+                        <a class="button" href="{{ cafe.get('Location') }}"
+                           target="_blank" style="color: yellow;">Maps Link</a>
+                    </td>
+                    <td>{{ cafe.get('Open') }}</td>
+                    <td>{{ cafe.get('Close') }}</td>
+                    <td>{{ cafe.get('Coffee') }}</td>
+                    <td>{{ cafe.get('Wifi') }}</td>
+                    <td>{{ cafe.get('Power') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+  	  </table>
+
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

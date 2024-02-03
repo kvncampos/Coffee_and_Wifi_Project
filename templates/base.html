@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {{ bootstrap.load_css() }}
+    {% block styles %}
+    <!-- Load Bootstrap-Flask CSS here -->
+
+    <!-- Link to the styles.css here to apply styling to all the child templates.-->
+
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for category, message in messages %}
+            <div class="{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    {% block scripts %}
+            <!-- Optional JavaScript -->
+      {{ bootstrap.load_js() }}
+    {% endblock %}
+  </body>
+</html>
