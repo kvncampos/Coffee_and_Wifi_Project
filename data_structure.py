@@ -2,13 +2,13 @@ from dataclasses import dataclass
 from pprint import pp
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField, TimeField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, URL
 
 
 class CafeForm(FlaskForm):
     coffee_shop = StringField('Cafe name', validators=[InputRequired()])
 
-    location = StringField("Location", validators=[InputRequired()])
+    location = StringField("Location", validators=[InputRequired(), URL()])
 
     open_time = TimeField('Open Time', validators=[InputRequired()])
 
